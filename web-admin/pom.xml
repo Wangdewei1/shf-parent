@@ -124,6 +124,7 @@
                 <artifactId>jetty-maven-plugin</artifactId>
                 <version>9.4.15.v20190215</version>
                 <configuration>
+                    <!-- 如果检测到项目有更改则自动热部署，每隔n秒扫描一次。默认为0，即不扫描-->
                     <scanIntervalSeconds>2</scanIntervalSeconds>
                     <webAppConfig>
                         <!--指定web项目的根路径，默认为/ -->
