@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.auto.mapper.AclRoleMapper">
+    <!--所有AclRole字段-->
+    <sql id="Base_All_Role_Field">
+        id , username , password , name , phone , head_url , description , create_time ,update_time , is_deleted
+    </sql>
+    <!--查询已封装字段-->
+    <sql id="Base_Exist_Field">
+        role_name , role_code , description
+    </sql>
+    <!--查询所有角色-->
+    <select id="findAllRole" resultType="Role">
+        SELECT
+        <include refid="Base_Exist_Field"></include>
+        FROM
+        acl_role
+    </select>
+</mapper>
