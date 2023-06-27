@@ -14,8 +14,7 @@ import java.util.Map;
 @Controller
 @RequestMapping("/role")
 public class AclRoleController {
-    @Autowired
-    private AclRoleService aclRoleService;
+    private static final String ROLE_UPDATE_PAGE = "role/edit";
 
     public static final String INDEX_VIEW = "role/index";
 
@@ -28,6 +27,8 @@ public class AclRoleController {
 
     public static final String ADD_ROLE_PAGE = "role/create";
 
+    @Autowired
+    private AclRoleService aclRoleService;
 
     @GetMapping("/frame")
     public String toIndexPage(){
@@ -54,5 +55,24 @@ public class AclRoleController {
         return PAGE_SUCCESS;
     }
 
+    @GetMapping("/edit/{id}")
+    public String toEditRole(@PathVariable("id") Long id,Model model){
+        Role role = aclRoleService.getById(id);
+        model.addAttribute("role", role);
+        return ROLE_UPDATE_PAGE;
+    }
+
+    @PostMapping("/update")
+    public String updateRole(Role role , Model model){
+        aclRoleService.update(role);
+        model.addAttribute("messagePage", "修改角色成功");
+        return PAGE_SUCCESS;
+    }
+
+    @GetMapping("/delete/{id}")
+    public String deleteRole(@PathVariable("id") Long id){
+        aclRoleService.delete(id);
+        return REDIRECT_INDEX_ROLE_PAGE;
+    }
 
 }

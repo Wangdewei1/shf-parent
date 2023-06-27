@@ -40,4 +40,10 @@ public class AclRoleServiceTest {
         role.setDescription("房管");
         aclRoleService.insert(role);
     }
+
+    @Test
+    public void update(){
+        Role role = aclRoleService.getById(1l);
+        logger.debug(role + "");
+    }
 }
