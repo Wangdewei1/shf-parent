@@ -34,4 +34,10 @@
             </bean>
         </property>
     </bean>
+
+    <!--放行静态资源-->
+    <mvc:default-servlet-handler></mvc:default-servlet-handler>
+
+    <!--view-controller-->
+    <mvc:view-controller path="/role" view-name="index"></mvc:view-controller>
 </beans>
