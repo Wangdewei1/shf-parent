@@ -17,24 +17,13 @@ import java.util.List;
 public class AclRoleController {
     @Autowired
     private AclRoleService aclRoleService;
-    //视图前缀
-    public static final String PREFIX = "/WEB-INF/templates/";
-    //试图后缀
-    public static final String SUFFIX = ".html";
+
+    public static final String INDEX_VIEW = "role/index";
 
     @RequestMapping
-    public ModelAndView findAllRole(ModelAndView modelAndView , HttpServletRequest request){
-        List<Role> roleList = aclRoleService.findAllRole();
-        request.setAttribute("roleList",roleList);
-        modelAndView.setViewName("role/index");
-        return  modelAndView;
-    }
-
-
-    @RequestMapping("/getRole")
-    public String getRole(Model model){
+    public String findAllRole(Model model){
         List<Role> allRole = aclRoleService.findAllRole();
         model.addAttribute("roleList", allRole);
-        return "role/index";
+        return INDEX_VIEW;
     }
 }
