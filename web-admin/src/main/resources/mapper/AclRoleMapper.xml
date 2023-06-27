@@ -5,7 +5,7 @@
 <mapper namespace="com.auto.mapper.AclRoleMapper">
     <!--所有AclRole字段-->
     <sql id="Base_All_Role_Field">
-        id , username , password , name , phone , head_url , description , create_time ,update_time , is_deleted
+        id , role_name , role_code , description , create_time , update_time , is_deleted
     </sql>
     <!--查询已封装字段-->
     <sql id="Base_Exist_Field">
@@ -14,8 +14,9 @@
     <!--查询所有角色-->
     <select id="findAllRole" resultType="Role">
         SELECT
-        <include refid="Base_Exist_Field"></include>
+        <include refid="Base_All_Role_Field"></include>
         FROM
         acl_role
+        WHERE is_deleted = 0
     </select>
 </mapper>
