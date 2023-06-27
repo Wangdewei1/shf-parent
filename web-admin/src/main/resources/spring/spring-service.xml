@@ -16,4 +16,5 @@
     <bean id="transactionManager" class="org.springframework.jdbc.datasource.DataSourceTransactionManager">
         <property name="dataSource" ref="ds"></property>
     </bean>
+<!--    <mvc:annotation-driven></mvc:annotation-driven>-->
 </beans>

@@ -29,7 +29,7 @@ public class AclRoleMapperTest {
      */
     @Test
     public void findAllRole() {
-        List<Role> roleList = aclRoleMapper.findAllRole();
+        List<Role> roleList = aclRoleMapper.findAll();
         logger.debug(roleList + "");
     }
 }

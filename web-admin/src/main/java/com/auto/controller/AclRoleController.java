@@ -2,13 +2,14 @@ package com.auto.controller;
 
 import com.auto.entity.Role;
 import com.auto.service.AclRoleService;
+import com.github.pagehelper.PageInfo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+import java.util.Map;
 
 @Controller
 @RequestMapping("/role")
@@ -18,17 +19,40 @@ public class AclRoleController {
 
     public static final String INDEX_VIEW = "role/index";
 
-    public static final String INDEX_PAGE = "index";
+    public static final String INDEX_PAGE = "frame/index";
 
-    @RequestMapping
-    public String findAllRole(Model model){
-        List<Role> allRole = aclRoleService.findAllRole();
-        model.addAttribute("roleList", allRole);
-        return INDEX_VIEW;
-    }
+    //重定向角色管理页面
+    public static final String REDIRECT_INDEX_ROLE_PAGE = "redirect:/role";
 
-    @GetMapping
+    public static final String PAGE_SUCCESS = "common/successPage";
+
+    public static final String ADD_ROLE_PAGE = "role/create";
+
+
+    @GetMapping("/frame")
     public String toIndexPage(){
         return INDEX_PAGE;
     }
+
+    @GetMapping
+    public String findRolePage(Model model, Map<String,String> filters){
+        PageInfo<Role> page = aclRoleService.findPage(filters);
+        model.addAttribute("page",page);
+        model.addAttribute("filters", filters);
+        return INDEX_VIEW;
+    }
+
+    @GetMapping("/create")
+    public String toAddRole(){
+        return ADD_ROLE_PAGE;
+    }
+
+    @PostMapping("/save")
+    public String saveAddRole(Role role,Model model){
+        aclRoleService.insert(role);
+        model.addAttribute("messagePage","用户添加成功");
+        return PAGE_SUCCESS;
+    }
+
+
 }

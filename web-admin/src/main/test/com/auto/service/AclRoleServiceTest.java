@@ -28,7 +28,16 @@ public class AclRoleServiceTest {
      */
     @Test
     public void findAllRole() {
-        List<Role> roleList = aclRoleService.findAllRole();
+        List<Role> roleList = aclRoleService.findAll();
         logger.debug(roleList + "");
+    }
+
+    @Test
+    public void insert(){
+        Role role = new Role();
+        role.setRoleName("王梓伟");
+        role.setRoleCode("wang");
+        role.setDescription("房管");
+        aclRoleService.insert(role);
     }
 }

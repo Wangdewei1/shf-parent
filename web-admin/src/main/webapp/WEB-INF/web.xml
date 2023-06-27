@@ -12,7 +12,6 @@
             <param-value>classpath:spring/spring-web.xml</param-value>
         </init-param>
 
-        <load-on-startup>1</load-on-startup>
     </servlet>
 
     <servlet-mapping>

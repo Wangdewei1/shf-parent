@@ -12,11 +12,33 @@
         role_name , role_code , description
     </sql>
     <!--查询所有角色-->
-    <select id="findAllRole" resultType="Role">
+    <select id="findAll" resultType="Role">
         SELECT
         <include refid="Base_All_Role_Field"></include>
         FROM
         acl_role
         WHERE is_deleted = 0
     </select>
+
+    <!--根据分页查询-->
+    <select id="findPage" resultType="Role">
+        SELECT
+        <include refid="Base_All_Role_Field"></include>
+        FROM
+        acl_role
+        <where>
+            <if test="roleName != null and roleName != ''">
+                LIKE CONCAT('%' + #{roleName} + '%')
+            </if>
+            and is_deleted = 0
+        </where>
+        order by create_time desc
+    </select>
+
+    <!--新增角色-->
+    <insert id="insert">
+        INSERT INTO acl_role(role_name,role_code,description)
+        VALUES
+        (#{roleName},#{roleCode},#{description})
+    </insert>
 </mapper>
