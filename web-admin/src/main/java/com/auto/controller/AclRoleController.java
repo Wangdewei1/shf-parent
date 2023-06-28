@@ -2,6 +2,7 @@ package com.auto.controller;
 
 import com.auto.entity.Role;
 import com.auto.service.AclRoleService;
+import com.github.pagehelper.PageHelper;
 import com.github.pagehelper.PageInfo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -35,8 +36,10 @@ public class AclRoleController {
         return INDEX_PAGE;
     }
 
-    @GetMapping
-    public String findRolePage(Model model, Map<String,String> filters){
+    @RequestMapping
+    public String findRolePage(Model model, @RequestParam Map<String,String> filters){
+        //清理分页缓存
+//        PageHelper.clearPage();
         PageInfo<Role> page = aclRoleService.findPage(filters);
         model.addAttribute("page",page);
         model.addAttribute("filters", filters);

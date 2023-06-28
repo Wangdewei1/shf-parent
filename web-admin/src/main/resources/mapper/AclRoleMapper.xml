@@ -12,15 +12,7 @@
         role_name , role_code , description
     </sql>
     <!--查询所有角色-->
-    <select id="findAll" resultType="Role">
-        SELECT
-        <include refid="Base_All_Role_Field"></include>
-        FROM
-        acl_role
-        WHERE is_deleted = 0
-    </select>
-
-    <!--根据分页查询-->
+    <!--concat是字符串拼接 ， （）中用，分割，不能用加号 ，用+就变成  select count(0)了-->
     <select id="findPage" resultType="Role">
         SELECT
         <include refid="Base_All_Role_Field"></include>
@@ -28,11 +20,20 @@
         acl_role
         <where>
             <if test="roleName != null and roleName != ''">
-                LIKE CONCAT('%' + #{roleName} + '%')
+                role_name LIKE concat('%' , #{roleName} , '%')
             </if>
             and is_deleted = 0
         </where>
         order by create_time desc
+    </select>
+
+    <!--根据分页查询-->
+    <select id="findAll" resultType="Role">
+        SELECT
+        <include refid="Base_All_Role_Field"></include>
+        FROM
+        acl_role
+        WHERE is_deleted = 0
     </select>
 
     <!--新增角色-->
