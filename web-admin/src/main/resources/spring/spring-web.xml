@@ -46,11 +46,12 @@
 
     <!--view-controller-->
     <mvc:view-controller path="/" view-name="frame/index"></mvc:view-controller>
-
+    <!--欢迎页-->
     <mvc:view-controller path="/main" view-name="frame/main"></mvc:view-controller>
-
+    <!--角色管理页-->
     <mvc:view-controller path="/role" view-name="role/index"></mvc:view-controller>
-
+    <!--操作成功页-->
     <mvc:view-controller path="/role/save" view-name="common/successPage"></mvc:view-controller>
-
+    <!--用户管理页-->
+    <mvc:view-controller path="/admin" view-name="admin/index"></mvc:view-controller>
 </beans>
