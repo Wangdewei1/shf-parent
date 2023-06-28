@@ -7,6 +7,7 @@ import com.github.pagehelper.PageInfo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -52,7 +53,7 @@ public class AclRoleController {
     }
 
     @PostMapping("/save")
-    public String saveAddRole(Role role,Model model){
+    public String saveAddRole(@Validated(Role.class) Role role, Model model){
         aclRoleService.insert(role);
         model.addAttribute("messagePage","用户添加成功");
         return PAGE_SUCCESS;
@@ -66,7 +67,7 @@ public class AclRoleController {
     }
 
     @PostMapping("/update")
-    public String updateRole(Role role , Model model){
+    public String updateRole(@Validated(Role.class) Role role , Model model){
         aclRoleService.update(role);
         model.addAttribute("messagePage", "修改角色成功");
         return PAGE_SUCCESS;

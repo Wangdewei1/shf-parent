@@ -39,11 +39,18 @@
     <spring.security.version>5.0.5.RELEASE</spring.security.version>
     <thymeleaf-springsecurity5.version>3.0.4.RELEASE</thymeleaf-springsecurity5.version>
     <redis-session.version>1.3.5.RELEASE</redis-session.version>
+    <hibernate-validator-version>6.0.17.Final</hibernate-validator-version>
   </properties>
 
   <!-- 依赖管理 -->
   <dependencyManagement>
     <dependencies>
+      <!--数据校验-->
+      <dependency>
+        <groupId>org.hibernate.validator</groupId>
+        <artifactId>hibernate-validator</artifactId>
+        <version>${hibernate-validator-version}</version>
+      </dependency>
       <!--spring-session 同步-->
       <dependency>
         <groupId>org.springframework.session</groupId>

@@ -12,6 +12,8 @@
     <import resource="classpath:spring/spring-persist.xml"></import>
     <!--开启事务注解-->
     <tx:annotation-driven></tx:annotation-driven>
+    <!--开启aop-->
+    <aop:aspectj-autoproxy></aop:aspectj-autoproxy>
     <!--配置事务管理-->
     <bean id="transactionManager" class="org.springframework.jdbc.datasource.DataSourceTransactionManager">
         <property name="dataSource" ref="ds"></property>
